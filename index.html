@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Diabetes Detection System</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="background"></div>
+  <div class="container">
+    <h1>🩺 Diabetes Detection System</h1>
+    <p class="subtitle">Predict diabetes using patient health data</p>
+
+    <form action="/predict" method="POST" class="form">
+      {% for label in ["Pregnancies", "Glucose", "BloodPressure", "SkinThickness", "Insulin", "BMI", "DiabetesPedigreeFunction", "Age"] %}
+      <div class="form-group">
+        <label>{{ label }}</label>
+        <input
+          type="number"
+          name="{{ label }}"
+          min="0"
+          step="any"
+          required
+        />
+      </div>
+      {% endfor %}
+      <button type="submit" class="btn">🔍 Predict</button>
+    </form>
+
+    {% if prediction_text %}
+    <div class="result-card">
+      <h2>{{ prediction_text }}</h2>
+      {% if confidence_text %}
+      <p>{{ confidence_text }}</p>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+</body>
+</html>
