@@ -74,7 +74,7 @@ Final training metrics:
 - Loss: 0.3466
 - Validation Loss: 0.4593
 
-## 📌 Requirements
+## Requirements
 
 - Python 3.7+
 - Flask
